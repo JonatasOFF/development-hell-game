@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
   body, input, textarea, button {
-    font-family: ${font.family.Lato};
+    font-family: ${font.family.Tinos};
     font-weight: ${font.normal};
   }
 

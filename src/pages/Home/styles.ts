@@ -1,73 +1,71 @@
-import { font, primaryColors, breakpoints } from 'common/styles/theme';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
-
+  width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  max-width: 110rem;
-  margin: 0 auto;
-
-  img {
-    width: 15rem;
-    margin-bottom: 2.7rem;
-
-    @media (max-width: ${breakpoints.medium}) {
-      width: 10rem;
-    }
-  }
-
-  p {
-    text-align: center;
-    margin-top: 3rem;
-    font-size: 2rem;
-    font-weight: ${font.light};
-    line-height: ${font.lineHeight.xxsmall};
-
-    @media (max-width: ${breakpoints.medium}) {
-      font-size: 1.6rem;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: ${primaryColors.black};
-    font-weight: ${font.semiBold};
-    font-size: 1.8rem;
-    line-height: ${font.lineHeight.xxsmall};
-
-    @media (max-width: ${breakpoints.medium}) {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: ${breakpoints.medium}) {
-    padding: 2.4rem;
-
-    h1 {
-      font-size: ${font.sizes.heading04};
-      text-align: center;
-    }
-  }
+  flex-direction: row;
 `;
 
-export const CreatedBy = styled.div`
-  margin-top: 2.7rem;
+export const Contracts = styled.div`
+  display: flex;
+  height: 100px;
+  width: 350px;
+  justify-self: end;
+  border: 5px solid black;
+  text-align: center;
+`;
 
-  span {
-    font-size: 1.4rem;
-  }
+export const Projects = styled.div`
+  height: calc(100% - 100px);
+  width: 350px;
+  justify-self: end;
+  border: 5px solid black;
+  text-align: center;
+`;
 
-  a {
-    text-decoration: none;
-    font-size: 1.4rem;
-  }
+export const Programming = styled.div`
+  display: flex;
+  height: 150px;
+  width: 350px;
+  justify-self: end;
+  border: 5px solid black;
+  text-align: center;
+`;
 
-  @media (max-width: ${breakpoints.medium}) {
-    margin-top: 3rem;
-  }
+export const Upgrades = styled.div`
+  height: calc(100% - 150px);
+  width: 350px;
+  justify-self: end;
+  border: 5px solid black;
+  text-align: center;
+`;
+
+export const RightComponents = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-self: end;
+  margin-left: auto;
+  border-left: 2px solid black;
+`;
+
+export const CenterComponents = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 100%;
+  text-align: center;
+`;
+
+export const Company = styled.div``;
+
+export const LeftComponents = styled.div`
+  position: relative;
+  justify-self: start;
+`;
+
+export const Time = styled.div`
+  display: flex;
+  justify-self: start;
+  align-self: start;
 `;

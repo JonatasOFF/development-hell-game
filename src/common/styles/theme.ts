@@ -58,6 +58,7 @@ export const font = {
   family: {
     Lato: "'Lato',sans-serif",
     Playfair: "'Playfair Display', serif",
+    Tinos: "'Tinos', serif",
   },
 } as const;
 
