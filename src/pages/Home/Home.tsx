@@ -1,6 +1,6 @@
-import { Contracts } from 'components';
-
+import { Contracts } from './components';
 import * as S from './styles';
+
 export function Home() {
   return (
     <S.Container>
@@ -15,7 +15,7 @@ export function Home() {
         </S.Company>
       </S.CenterComponents>
       <S.RightComponents>
-        <Contracts text="fodase" />
+        <Contracts text="" />
         <S.Projects>Lista de Projetos</S.Projects>
       </S.RightComponents>
     </S.Container>
