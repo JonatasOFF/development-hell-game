@@ -12,18 +12,29 @@ function EnterpriseProvider({ children }: IEnterpriseProvider) {
   if (!localStorage.getItem(C.limitContracts)) {
     localStorage.setItem(C.limitContracts, '2');
     localStorage.setItem(C.limitProjects, '1');
+    localStorage.setItem(C.programmersLimit, '1');
+    localStorage.setItem(C.contractsActive, JSON.stringify([]));
+    localStorage.setItem(C.contractsFree, JSON.stringify([]));
+    localStorage.setItem(C.projects, JSON.stringify([]));
+    localStorage.setItem(C.programmers, JSON.stringify([]));
   }
   const [contractsLimit, setContractsLimit] = useState<number>(
     parseInt(localStorage.getItem(C.limitContracts) || '0', 10),
   );
-  const [projectsLimit, setProjectsLimit] = useState(
+  const [projectsLimit, setProjectsLimit] = useState<number>(
     parseInt(localStorage.getItem(C.limitProjects) || '0', 10),
+  );
+
+  const [programmersLimit, setprogrammersLimit] = useState(
+    parseInt(localStorage.getItem(C.programmersLimit) || '0', 10),
   );
 
   return (
     <EnterpriseContext.Provider
       value={{
-        context: 'Empata foda',
+        contractsLimit,
+        projectsLimit,
+        programmersLimit,
       }}
     >
       {children}

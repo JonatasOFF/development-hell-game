@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
 
 export interface IEnterpriseContext {
-  context: string;
+  contractsLimit: number;
+  projectsLimit: number;
+  programmersLimit: number;
 }
 
 export interface IEnterpriseProvider {
