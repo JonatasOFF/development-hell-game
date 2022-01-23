@@ -4,6 +4,7 @@ export interface IEnterpriseContext {
   contractsLimit: number;
   projectsLimit: number;
   programmersLimit: number;
+  contractsLimitActive: number;
 }
 
 export interface IEnterpriseProvider {

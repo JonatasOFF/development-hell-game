@@ -6,8 +6,7 @@ export interface IContractsContext {
   contractsActive: ContractModel[];
   contractsFree: ContractModel[];
 
-  handleGenerateContracts: () => void;
-  handleActiveContract: () => void;
+  handleActiveContract: (index: number) => void;
 }
 
 export interface IContractsProvider {

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3006 && react-scripts start",
+
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll false",
     "eject": "react-scripts eject",

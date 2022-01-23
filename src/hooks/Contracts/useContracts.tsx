@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 
+import { FieldArray } from 'common/utils';
 import * as C from 'common/utils/constants/storage';
 import { useEnterprise } from 'hooks';
 import { ContractModel } from 'models';
@@ -23,35 +24,40 @@ function ContractsProvider({ children }: IContractsProvider) {
   const storageContractsFree = JSON.parse(
     localStorage.getItem(C.contractsActive) || '[]',
   );
-  const { contractsLimit } = useEnterprise();
+  const { contractsLimit, contractsLimitActive } = useEnterprise();
 
   const [contractsActive, setContractsActive] = useState<ContractModel[]>(
     storageContractsActive,
   );
   const [contractsFree, setContractsFree] =
     useState<ContractModel[]>(storageContractsFree);
-  const handleActiveContract = useCallback(() => {
-    console.log('contrato novo Ativo !');
-  }, []);
+  const handleActiveContract = useCallback(
+    index => {
+      if (contractsLimitActive > contractsActive.length) {
+        const field = new FieldArray<ContractModel>([...contractsFree]);
+        const newContractActive = field.remove(index);
+        setContractsFree(newContractActive);
+        setContractsActive(newContractActive);
+      }
+    },
+    [contractsFree, contractsActive],
+  );
+
   useEffect(() => {
     const generatorContracts = setInterval(() => {
       if (contractsLimit > contractsFree.length) {
+        const field = new FieldArray<ContractModel>([...contractsFree]);
         const newContractsFree: ContractModel = {
           title: 'OpaEae',
           dependencies: [{ type: 'programming', value: 4 }],
           description: 'Tudo bom e teste irmao !!',
           reward: 1000,
         };
-        const contractsFreeNow = [...contractsFree];
-        console.log(contractsFree);
-        contractsFreeNow.push(newContractsFree);
-        setContractsFree(contractsFreeNow);
+
+        setContractsFree(field.append(newContractsFree));
       }
     }, 5000);
     return () => clearInterval(generatorContracts);
-  }, [contractsFree]);
-  const handleGenerateContracts = useCallback(() => {
-    console.log('asd');
   }, [contractsFree]);
 
   return (
@@ -60,7 +66,7 @@ function ContractsProvider({ children }: IContractsProvider) {
         context: 'katarina',
         contractsActive,
         contractsFree,
-        handleGenerateContracts,
+
         handleActiveContract,
       }}
     >

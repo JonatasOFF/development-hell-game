@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 import * as C from 'common/utils/constants/storage';
 
@@ -11,6 +11,7 @@ const EnterpriseContext = createContext<IEnterpriseContext>(
 function EnterpriseProvider({ children }: IEnterpriseProvider) {
   if (!localStorage.getItem(C.limitContracts)) {
     localStorage.setItem(C.limitContracts, '2');
+    localStorage.setItem(C.limitContractsActive, '1');
     localStorage.setItem(C.limitProjects, '1');
     localStorage.setItem(C.programmersLimit, '1');
     localStorage.setItem(C.contractsActive, JSON.stringify([]));
@@ -21,17 +22,21 @@ function EnterpriseProvider({ children }: IEnterpriseProvider) {
   const [contractsLimit, setContractsLimit] = useState<number>(
     parseInt(localStorage.getItem(C.limitContracts) || '0', 10),
   );
+  const [contractsLimitActive, setContractsLimitActive] = useState<number>(
+    parseInt(localStorage.getItem(C.limitContractsActive) || '0', 10),
+  );
   const [projectsLimit, setProjectsLimit] = useState<number>(
     parseInt(localStorage.getItem(C.limitProjects) || '0', 10),
   );
 
-  const [programmersLimit, setprogrammersLimit] = useState(
+  const [programmersLimit, setProgrammersLimit] = useState(
     parseInt(localStorage.getItem(C.programmersLimit) || '0', 10),
   );
 
   return (
     <EnterpriseContext.Provider
       value={{
+        contractsLimitActive,
         contractsLimit,
         projectsLimit,
         programmersLimit,

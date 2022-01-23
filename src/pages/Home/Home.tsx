@@ -6,10 +6,6 @@ import { Contracts } from './components';
 import * as S from './styles';
 
 export function Home() {
-  const { handleGenerateContracts } = useContracts();
-  useEffect(() => {
-    handleGenerateContracts();
-  }, []);
   return (
     <S.Container>
       <S.LeftComponents>

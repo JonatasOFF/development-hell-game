@@ -7,30 +7,34 @@ import { ContractsProps } from './interfaces';
 import * as S from './styles';
 
 export function Contracts({ text }: ContractsProps) {
-  const { contractsFree } = useContracts();
+  const { handleActiveContract, contractsFree } = useContracts();
   const [select, setSelect] = useState(0);
   const handleVerifySelect = useCallback(
     (toBeSelect: number) => {
       if (toBeSelect > contractsFree.length - 1) return setSelect(0);
+
       if (toBeSelect < 0) return setSelect(contractsFree.length - 1);
+      console.log(contractsFree.length - 1);
 
       setSelect(toBeSelect);
     },
-    [select],
+    [select, contractsFree],
   );
 
   const handleNext = useCallback(() => {
     handleVerifySelect(select + 1);
-  }, [select]);
+  }, [select, contractsFree]);
 
   const handlePrevious = useCallback(() => {
     handleVerifySelect(select - 1);
-  }, [select]);
+  }, [select, contractsFree]);
   return (
     <S.Container>
       {contractsFree.length > 0 && (
         <div>
-          <S.Header>{contractsFree[select].title}</S.Header>
+          <S.Header onClick={() => handleActiveContract(select)}>
+            {contractsFree[select].title}
+          </S.Header>
           <S.Attributes>
             {contractsFree[select].dependencies.map(dependency => (
               <S.Attribute key={dependency.type}>
