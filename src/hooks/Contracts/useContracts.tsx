@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import * as C from 'common/utils/constants/storage';
 import { useEnterprise } from 'hooks';
@@ -27,9 +33,8 @@ function ContractsProvider({ children }: IContractsProvider) {
   const handleActiveContract = useCallback(() => {
     console.log('contrato novo Ativo !');
   }, []);
-  console.log(contractsFree);
-  const handleGenerateContracts = useCallback(() => {
-    setInterval(() => {
+  useEffect(() => {
+    const generatorContracts = setInterval(() => {
       if (contractsLimit > contractsFree.length) {
         const newContractsFree: ContractModel = {
           title: 'OpaEae',
@@ -38,10 +43,15 @@ function ContractsProvider({ children }: IContractsProvider) {
           reward: 1000,
         };
         const contractsFreeNow = [...contractsFree];
+        console.log(contractsFree);
         contractsFreeNow.push(newContractsFree);
         setContractsFree(contractsFreeNow);
       }
     }, 5000);
+    return () => clearInterval(generatorContracts);
+  }, [contractsFree]);
+  const handleGenerateContracts = useCallback(() => {
+    console.log('asd');
   }, [contractsFree]);
 
   return (
