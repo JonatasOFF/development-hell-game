@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-height: 150px;
-  min-height: 150px;
+  max-height: 15rem;
+  min-height: 15rem;
   background-color: #828069;
   color: #fffbd9;
-  border-radius: 1px;
-  padding: 16px 16px 16px 16px;
+  border-radius: 0.1rem;
+  padding: 1.6rem 1.6rem 1.6rem 1.6rem;
 `;
 export const Attributes = styled.div`
   display: flex;
@@ -26,38 +26,38 @@ export const Attribute = styled.div`
 `;
 
 export const Header = styled.div`
-  font-size: 28px;
-  margin-bottom: 5px;
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
   text-align: center;
 `;
 
 export const ProgrammingPointer = styled.div`
-  height: 15px;
-  width: 15px;
-  border-radius: 50rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 5rem;
   background-color: #42eaf0;
-  margin-right: 5px;
+  margin-right: 0.5rem;
 `;
 
 export const DescriptionContract = styled.p`
-  font-size: 12px;
+  font-size: 1.2rem;
   font-weight: bold;
   font-style: italic;
-  margin-top: 15px;
-  word-spacing: 1px;
+  margin-top: 1.5rem;
+  word-spacing: 0.1rem;
   color: #ccc9ad;
   word-break: break;
   text-align: center;
 `;
 export const ArrowNextContract = styled.div`
   position: absolute;
-  top: 65px;
+  top: 6.5rem;
   cursor: pointer;
-  right: 12px;
+  right: 1.2rem;
 `;
 export const ArrowPreviousContract = styled.div`
   position: absolute;
-  top: 65px;
+  top: 6.5rem;
   cursor: pointer;
-  right: 322px;
+  right: 32.2rem;
 `;

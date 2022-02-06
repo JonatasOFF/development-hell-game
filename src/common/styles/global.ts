@@ -35,6 +35,11 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  ul,
+  li {
+    list-style: none;
+  }
+
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;

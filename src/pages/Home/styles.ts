@@ -9,35 +9,35 @@ export const Container = styled.div`
 
 export const Contracts = styled.div`
   display: flex;
-  height: 100px;
-  width: 350px;
+  height: 10rem;
+  width: 35rem;
   justify-self: end;
-  border: 5px solid black;
+  border: 0.5rem solid black;
   text-align: center;
 `;
 
 export const Projects = styled.div`
-  height: calc(100% - 100px);
-  width: 350px;
+  height: calc(100% - 10rem);
+  width: 35rem;
   justify-self: end;
-  border: 5px solid black;
+  border: 0.5rem solid black;
   text-align: center;
 `;
 
 export const Programming = styled.div`
   display: flex;
-  height: 150px;
-  width: 350px;
+  height: 15rem;
+  width: 35rem;
   justify-self: end;
-  border: 5px solid black;
+  border: 0.5rem solid black;
   text-align: center;
 `;
 
 export const Upgrades = styled.div`
-  height: calc(100% - 150px);
-  width: 350px;
+  height: calc(100% - 15rem);
+  width: 35rem;
   justify-self: end;
-  border: 5px solid black;
+  border: 0.5rem solid black;
   text-align: center;
 `;
 
@@ -45,8 +45,9 @@ export const RightComponents = styled.div`
   display: flex;
   flex-direction: column;
   justify-self: end;
+  min-width: 35rem;
   margin-left: auto;
-  border-left: 2px solid black;
+  border-left: 0.2rem solid black;
 `;
 
 export const CenterComponents = styled.div`

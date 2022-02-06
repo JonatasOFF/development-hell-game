@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
+import { Contracts, Projects } from 'containers';
 import { useContracts } from 'hooks';
 
-import { Contracts } from './components';
 import * as S from './styles';
 
 export function Home() {
@@ -20,7 +20,7 @@ export function Home() {
       </S.CenterComponents>
       <S.RightComponents>
         <Contracts text="" />
-        <S.Projects>Lista de Projetos</S.Projects>
+        <Projects text="" />
       </S.RightComponents>
     </S.Container>
   );

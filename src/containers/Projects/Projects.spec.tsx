@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import { Test } from './Test';
+import { Projects } from './Projects';
 
-describe('<Test />', () => {
+describe('<Contracts />', () => {
   it('should render the component', () => {
-    render(<Test text="Test" />);
+    render(<Projects text="Test" />);
 
     expect(screen.getByText(/Test/i)).toBeInTheDocument();
   });
