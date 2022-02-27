@@ -47,7 +47,6 @@ export const RightComponents = styled.div`
   justify-self: end;
   min-width: 35rem;
   margin-left: auto;
-  border-left: 0.2rem solid black;
 `;
 
 export const CenterComponents = styled.div`

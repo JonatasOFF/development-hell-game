@@ -1,4 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { ProjectsStyleProps } from './interfaces';
+
+const modifier = {
+  createProject: () => css``,
+};
 
 export const Container = styled.div`
   background-color: #23211b;
@@ -37,6 +43,12 @@ export const BorderBrightness = styled.div`
   filter: brightness(2);
   background-color: white;
   box-shadow: 0rem 0rem 0.4rem white;
+`;
+
+export const CreateProject = styled.div<ProjectsStyleProps>`
+  ${({ createProject }) => css`
+    ${!!createProject && modifier.createProject()}
+  `}
 `;
 
 export const List = styled.ul``;

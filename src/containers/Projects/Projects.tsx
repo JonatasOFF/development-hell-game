@@ -25,6 +25,7 @@ export function Projects({ text }: ProjectsProps) {
           <AiOutlinePlus />
         </S.PlusProject>
       </S.Header>
+      <input type="text" />
       <S.BorderBrightness />
       <S.List>
         <ItemProject {...projectExample} />
