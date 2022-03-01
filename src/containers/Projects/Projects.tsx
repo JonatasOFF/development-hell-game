@@ -1,6 +1,6 @@
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { ItemProject } from 'components';
+import { Dropdown, ItemProject, TextField } from 'components';
 
 import { ProjectsProps } from './interfaces';
 import * as S from './styles';
@@ -25,7 +25,21 @@ export function Projects({ text }: ProjectsProps) {
           <AiOutlinePlus />
         </S.PlusProject>
       </S.Header>
-      <input type="text" />
+      <TextField
+        placeholder="Coloca um bem ruim"
+        label="Nome do projeto"
+        value=""
+      />
+      <Dropdown
+        placeholder="Nome do Programador"
+        label="Programador que vai atuar"
+        value=""
+      />
+      <Dropdown
+        placeholder="Contrato"
+        label="Contrato que o programador vai atuar"
+        value=""
+      />
       <S.BorderBrightness />
       <S.List>
         <ItemProject {...projectExample} />

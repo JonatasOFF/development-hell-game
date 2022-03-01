@@ -5,14 +5,10 @@ export const TextField = styled.div``;
 
 export const BodyInput = styled.div`
   display: flex;
+  background-color: #dededd;
   flex-direction: column;
   padding: 8px;
-  border-image-slice: 18 14 18 18;
-  border-image-width: 5px 5px 5px 5px;
-  border-image-outset: 0px 0px 0px 0px;
-  border-image-repeat: round round;
-  border-image-source: url(${BarIron});
-  border-radius: 16px;
+  border: 4px solid #1c1c1c;
 `;
 
 export const Input = styled.input`
@@ -20,9 +16,10 @@ export const Input = styled.input`
   :focus {
     outline: none;
   }
-  height: 36px;
-  padding: 0px 8px;
 
+  padding: 0px 8px;
+  padding-top: 8px;
+  background-color: #dededd;
   font-size: 16px;
   font-style: italic;
   width: 100%;
@@ -36,12 +33,13 @@ export const AlignInputAndIcon = styled.div`
 export const Label = styled.label`
   position: absolute;
   background-color: white;
-
+  background-color: #6c6363;
   border: 3px solid #3f3f3f;
   margin-top: -18px;
+  border-radius: 8px;
   padding: 1px 16px;
   font-size: 14px;
-  color: #676566;
+  color: white;
 `;
 
 export const BodyIcon = styled.div`

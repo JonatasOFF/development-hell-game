@@ -20,10 +20,9 @@ export function TextField({
   return (
     <S.TextField>
       <S.BodyInput>
-        <S.Label htmlFor={`input-${label}`}>{label}</S.Label>
+        <S.Label>{label}</S.Label>
         <S.AlignInputAndIcon>
           <S.Input
-            id={`input-${label}`}
             value={value}
             placeholder={placeholder}
             onChange={handleChangeTextField}
