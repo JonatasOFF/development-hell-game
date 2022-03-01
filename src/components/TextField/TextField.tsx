@@ -13,7 +13,9 @@ export function TextField({
   const handleChangeTextField = useCallback(
     ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
       if (onChange) onChange(value);
+      console.log('porra');
     },
+
     [onChange],
   );
   return (
