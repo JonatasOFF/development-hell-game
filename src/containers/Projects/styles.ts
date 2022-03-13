@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 
-import { ProjectsStyleProps } from './interfaces';
+import { FormCreateProjectStyleProps, ProjectsStyleProps } from './interfaces';
 
 const modifier = {
   createProject: () => css``,
+  showForm: () => css`
+    height: 23rem;
+    scale: 1;
+    opacity: 1;
+  `,
 };
 
 export const Container = styled.div`
@@ -54,3 +59,28 @@ export const CreateProject = styled.div<ProjectsStyleProps>`
 export const List = styled.ul``;
 
 export const ItemProject = styled.li``;
+
+export const FooterInformationProject = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  justify-content: end;
+`;
+
+export const InformationProject = styled.div`
+  color: white;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
+export const FormCreateProject = styled.div<FormCreateProjectStyleProps>`
+  transition: all 0.2s cubic-bezier(0.28, 0.42, 0.52, 0.69);
+  scale: 0;
+  padding: 0.8rem;
+  opacity: 0;
+  height: 0rem;
+
+  ${({ open }) => css`
+    ${!!open && modifier.showForm()}
+  `}
+`;

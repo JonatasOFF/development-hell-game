@@ -6,3 +6,7 @@ export interface ProjectsStyleProps {
   createProject?: boolean;
   openProject?: boolean;
 }
+
+export interface FormCreateProjectStyleProps {
+  open?: boolean;
+}
