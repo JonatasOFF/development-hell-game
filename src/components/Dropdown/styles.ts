@@ -68,6 +68,7 @@ export const List = styled.ul<DropdownStyleProps>`
   min-width: 200px;
   color: #717171;
   background-color: white;
+  z-index: 20;
   font-weight: bold;
   border: 1px solid #dededd;
   text-align: start;
@@ -86,7 +87,8 @@ export const List = styled.ul<DropdownStyleProps>`
 
 export const Item = styled.li`
   text-align: start;
-  padding: 8px;
+  padding: 0.8rem;
+
   display: block;
   border-bottom: 1px solid #dededd;
   :hover {

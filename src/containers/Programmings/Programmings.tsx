@@ -2,12 +2,26 @@ import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Dropdown, ItemProject, TextField } from 'components';
+import { useProgramming } from 'hooks';
 
+import { Programming } from './components';
 import { ProgrammingsProps } from './interfaces';
 import * as S from './styles';
 
 export function Programmings({ text }: ProgrammingsProps) {
-  console.log('q2w');
+  const { programmings } = useProgramming();
+  console.log(programmings);
 
-  return <S.Container>Lista de Programadores</S.Container>;
+  return (
+    <S.Container>
+      <S.Title>Lista de Programadores</S.Title>
+      <S.Border />
+      <S.List>
+        {programmings &&
+          programmings.map(programming => (
+            <Programming {...programming} key={programming.name} />
+          ))}
+      </S.List>
+    </S.Container>
+  );
 }

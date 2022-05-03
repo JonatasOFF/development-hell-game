@@ -1,14 +1,30 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useContext, useState, useCallback } from 'react';
+
+import { FieldArray } from 'common/utils';
+import { ProjectModel } from 'models';
 
 import { IProjectsContext, IProjectsProvider } from './interface';
 
 const ProjectsContext = createContext<IProjectsContext>({} as IProjectsContext);
 
 function ProjectsProvider({ children }: IProjectsProvider) {
+  const [projects, setProjects] = useState<ProjectModel[]>([]);
+
+  const handleActiveProject = useCallback(
+    (project: ProjectModel) => {
+      const projectsField = new FieldArray<ProjectModel>([...projects]);
+
+      setProjects(projectsField.append(project));
+      console.log(projects);
+    },
+    [projects, setProjects, useState],
+  );
+
   return (
     <ProjectsContext.Provider
       value={{
-        context: 'katarina',
+        projects,
+        handleActiveProject,
       }}
     >
       {children}

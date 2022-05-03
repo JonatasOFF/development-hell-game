@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   max-height: 15rem;
   min-height: 15rem;
-  background-color: #828069;
+  background-color: #23211b;
   color: #fffbd9;
   border-radius: 0.1rem;
   padding: 1.6rem 1.6rem 1.6rem 1.6rem;

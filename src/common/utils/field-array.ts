@@ -7,6 +7,11 @@ export class FieldArray<T> {
   remove(index: number): T[] {
     return this.ArrayUse.filter((item: T) => item !== this.ArrayUse[index]);
   }
+
+  get(index: number): T {
+    return this.ArrayUse[index];
+  }
+
   append(item: T): T[] {
     this.ArrayUse.push(item);
     return this.ArrayUse;

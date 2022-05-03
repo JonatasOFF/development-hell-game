@@ -21,27 +21,16 @@ function ContractsProvider({ children }: IContractsProvider) {
   const storageContractsActive = JSON.parse(
     localStorage.getItem(C.contractsActive) || '[]',
   );
+  const [contractsActive, setContractsActive] = useState<ContractModel[]>(
+    storageContractsActive,
+  );
   const storageContractsFree = JSON.parse(
     localStorage.getItem(C.contractsActive) || '[]',
   );
   const { contractsLimit, contractsLimitActive } = useEnterprise();
 
-  const [contractsActive, setContractsActive] = useState<ContractModel[]>(
-    storageContractsActive,
-  );
   const [contractsFree, setContractsFree] =
     useState<ContractModel[]>(storageContractsFree);
-  const handleActiveContract = useCallback(
-    index => {
-      if (contractsLimitActive > contractsActive.length) {
-        const field = new FieldArray<ContractModel>([...contractsFree]);
-        const newContractActive = field.remove(index);
-        setContractsFree(newContractActive);
-        setContractsActive(newContractActive);
-      }
-    },
-    [contractsFree, contractsActive],
-  );
 
   useEffect(() => {
     const generatorContracts = setInterval(() => {
@@ -49,24 +38,36 @@ function ContractsProvider({ children }: IContractsProvider) {
         const field = new FieldArray<ContractModel>([...contractsFree]);
         const newContractsFree: ContractModel = {
           title: 'OpaEae',
-          dependencies: [{ type: 'programming', value: 4 }],
+          dependencies: [
+            { type: 'programming', value: Math.floor(Math.random() * 10) },
+          ],
           description: 'Tudo bom e teste irmao !!',
           reward: 1000,
         };
 
         setContractsFree(field.append(newContractsFree));
       }
-    }, 5000);
+    }, 1000);
     return () => clearInterval(generatorContracts);
   }, [contractsFree]);
+
+  const handleActiveContract = useCallback(
+    (index: number) => {
+      if (contractsLimitActive > contractsActive.length) {
+        const field = new FieldArray<ContractModel>([...contractsFree]);
+
+        setContractsActive([...contractsActive, field.get(index)]);
+        setContractsFree(field.remove(index));
+      }
+    },
+    [contractsLimitActive, contractsActive, contractsFree],
+  );
 
   return (
     <ContractsContext.Provider
       value={{
-        context: 'katarina',
         contractsActive,
         contractsFree,
-
         handleActiveContract,
       }}
     >

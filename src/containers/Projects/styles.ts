@@ -5,7 +5,7 @@ import { FormCreateProjectStyleProps, ProjectsStyleProps } from './interfaces';
 const modifier = {
   createProject: () => css``,
   showForm: () => css`
-    height: 23rem;
+    height: 28rem;
     scale: 1;
     opacity: 1;
   `,
@@ -75,6 +75,12 @@ export const InformationProject = styled.div`
 
 export const FormCreateProject = styled.div<FormCreateProjectStyleProps>`
   transition: all 0.2s cubic-bezier(0.28, 0.42, 0.52, 0.69);
+  > div {
+    :first-child {
+      margin-top: 0rem;
+    }
+    margin-top: 1.6rem;
+  }
   scale: 0;
   padding: 0.8rem;
   opacity: 0;

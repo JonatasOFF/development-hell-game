@@ -31,6 +31,7 @@ export function Dropdown({
             <S.Item
               onClick={() => {
                 if (onChange) onChange(item);
+                setOpen(false);
               }}
               key={item}
             >

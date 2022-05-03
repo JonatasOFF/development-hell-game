@@ -1,7 +1,8 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 
 import { ContractsProvider } from './Contracts';
 import { EnterpriseProvider } from './Enterprise';
+import { ProgrammingProvider } from './Programming';
 import { ProjectsProvider } from './Projects';
 
 interface AppProviderProps {
@@ -11,9 +12,11 @@ interface AppProviderProps {
 export function AppProvider({ children }: AppProviderProps) {
   return (
     <EnterpriseProvider>
-      <ContractsProvider>
-        <ProjectsProvider>{children}</ProjectsProvider>
-      </ContractsProvider>
+      <ProgrammingProvider>
+        <ProjectsProvider>
+          <ContractsProvider>{children}</ContractsProvider>
+        </ProjectsProvider>
+      </ProgrammingProvider>
     </EnterpriseProvider>
   );
 }
