@@ -9,29 +9,10 @@ const EnterpriseContext = createContext<IEnterpriseContext>(
 );
 
 function EnterpriseProvider({ children }: IEnterpriseProvider) {
-  if (!localStorage.getItem(C.limitContracts)) {
-    localStorage.setItem(C.limitContracts, '2');
-    localStorage.setItem(C.limitContractsActive, '1');
-    localStorage.setItem(C.limitProjects, '1');
-    localStorage.setItem(C.programmersLimit, '1');
-    localStorage.setItem(C.contractsActive, JSON.stringify([]));
-    localStorage.setItem(C.contractsFree, JSON.stringify([]));
-    localStorage.setItem(C.projects, JSON.stringify([]));
-    localStorage.setItem(C.programmers, JSON.stringify([]));
-  }
-  const [contractsLimit, setContractsLimit] = useState<number>(
-    parseInt(localStorage.getItem(C.limitContracts) || '0', 10),
-  );
-  const [contractsLimitActive, setContractsLimitActive] = useState<number>(
-    parseInt(localStorage.getItem(C.limitContractsActive) || '0', 10),
-  );
-  const [projectsLimit, setProjectsLimit] = useState<number>(
-    parseInt(localStorage.getItem(C.limitProjects) || '0', 10),
-  );
-
-  const [programmersLimit, setProgrammersLimit] = useState(
-    parseInt(localStorage.getItem(C.programmersLimit) || '0', 10),
-  );
+  const [contractsLimit, setContractsLimit] = useState<number>(99);
+  const [contractsLimitActive, setContractsLimitActive] = useState<number>(99);
+  const [projectsLimit, setProjectsLimit] = useState<number>(99);
+  const [programmersLimit, setProgrammersLimit] = useState(99);
 
   return (
     <EnterpriseContext.Provider

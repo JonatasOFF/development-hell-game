@@ -18,19 +18,10 @@ const ContractsContext = createContext<IContractsContext>(
 );
 
 function ContractsProvider({ children }: IContractsProvider) {
-  const storageContractsActive = JSON.parse(
-    localStorage.getItem(C.contractsActive) || '[]',
-  );
-  const [contractsActive, setContractsActive] = useState<ContractModel[]>(
-    storageContractsActive,
-  );
-  const storageContractsFree = JSON.parse(
-    localStorage.getItem(C.contractsActive) || '[]',
-  );
   const { contractsLimit, contractsLimitActive } = useEnterprise();
 
-  const [contractsFree, setContractsFree] =
-    useState<ContractModel[]>(storageContractsFree);
+  const [contractsActive, setContractsActive] = useState<ContractModel[]>([]);
+  const [contractsFree, setContractsFree] = useState<ContractModel[]>([]);
 
   useEffect(() => {
     const generatorContracts = setInterval(() => {

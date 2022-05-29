@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "set PORT=3006 && react-scripts start",
+
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll false",
     "eject": "react-scripts eject",
@@ -51,11 +52,11 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-security": "^1.4.0",
@@ -109,8 +110,9 @@
     ]
   },
   "optionalDependencies": {
-    "babel-loader": "8.1.0"
-  },
+  "babel-loader": "8.1.0"
+},
+
   "jest": {
     "coverageReporters": [
       "json",

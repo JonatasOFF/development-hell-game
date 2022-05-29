@@ -10,25 +10,18 @@ const ProgrammingContext = createContext<IProgrammingContext>(
 );
 
 function ProgrammingProvider({ children }: IProgrammingProvider) {
-  if (JSON.parse(localStorage.getItem(C.programmers) || '[]')) {
-    const mockProgrammings: ProgrammingModel[] = [
-      {
-        name: 'Carlos',
-        age: 45,
-        production: 12,
-      },
-      {
-        name: 'Roberto',
-        age: 22,
-        production: 2,
-      },
-    ];
-    localStorage.setItem(C.programmers, JSON.stringify(mockProgrammings));
-  }
-
-  const [programmings, setProgrammings] = useState(
-    JSON.parse(localStorage.getItem(C.programmers) || '{}'),
-  );
+  const [programmings, setProgrammings] = useState([
+    {
+      name: 'Carlos',
+      age: 45,
+      production: 12,
+    },
+    {
+      name: 'Roberto',
+      age: 22,
+      production: 2,
+    },
+  ]);
 
   return (
     <ProgrammingContext.Provider
