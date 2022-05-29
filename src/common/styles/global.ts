@@ -44,4 +44,10 @@ export default createGlobalStyle`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  inframe {
+    display: none;
+
+  }
+
 `;
