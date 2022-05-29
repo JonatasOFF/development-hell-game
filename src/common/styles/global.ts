@@ -11,7 +11,7 @@ export default createGlobalStyle`
 
   html {
     font-size: 62.5%; // 16px = 1.6rem
-    inframe {
+    iframe {
       display: none;
     }
   }
