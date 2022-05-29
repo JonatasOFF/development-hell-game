@@ -11,6 +11,7 @@ export default createGlobalStyle`
 
   html {
     font-size: 62.5%; // 16px = 1.6rem
+
   }
 
   body {
@@ -43,11 +44,6 @@ export default createGlobalStyle`
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
-  }
-
-  inframe {
-    display: none;
-
   }
 
 `;
