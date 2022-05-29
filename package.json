@@ -109,6 +109,10 @@
       "last 1 safari version"
     ]
   },
+  "optionalDependencies": {
+    "babel-loader": "8.1.0"
+  },
+
   "jest": {
     "coverageReporters": [
       "json",
