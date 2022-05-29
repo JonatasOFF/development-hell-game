@@ -8,6 +8,11 @@ export class FieldArray<T> {
     return this.ArrayUse.filter((item: T) => item !== this.ArrayUse[index]);
   }
 
+  update(index: number, item: T): T[] {
+    this.ArrayUse[index] = item;
+    return this.ArrayUse;
+  }
+
   get(index: number): T {
     return this.ArrayUse[index];
   }

@@ -16,7 +16,7 @@ Default.args = {
   name: 'arroz',
   description: 'feijao',
   contracts: {} as any,
-  programmings: ['fodase'],
+  programmings: [{} as any],
   payload: 123,
   bScore: 123,
   wScore: 0,

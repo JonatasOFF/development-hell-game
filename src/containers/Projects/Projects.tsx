@@ -15,7 +15,7 @@ export function Projects({ text }: ProjectsProps) {
   const [contract, setContract] = useState('');
   const { programmings } = useProgramming();
   const { contractsActive } = useContracts();
-  const { projects, handleActiveProject } = useProjects();
+  const { projects, handleCreateProject } = useProjects();
 
   const handleCreateNewProject = useCallback(() => {
     const contractUse = contractsActive.find(
@@ -23,16 +23,17 @@ export function Projects({ text }: ProjectsProps) {
     );
     console.log(projects);
     if (contractUse) {
+      const programmingUse = programmings.find(p => p.name === programming);
       const newProject: ProjectModel = {
         name: nameProject,
         description: '',
         contracts: [contractUse],
-        programmings: [programming],
+        programmings: [programmingUse || ({} as any)],
         payload: 5,
         bScore: 0,
         wScore: 0,
       };
-      handleActiveProject(newProject);
+      handleCreateProject(newProject);
     }
   }, [contract, contractsActive, projects, nameProject, programming]);
 
