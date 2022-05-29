@@ -8,7 +8,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+
     "plugin:jsx-a11y/recommended",
     "prettier"
   ],
@@ -26,7 +26,7 @@
     "import-helpers",
     "react-hooks",
     "security",
-    "prettier",
+
     "jsx-a11y"
   ],
   "settings": {
