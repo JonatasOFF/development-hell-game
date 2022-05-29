@@ -19,6 +19,9 @@ export default createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     font-size: 1.6rem;
+    > iframe {
+      display: none;
+    }
   }
 
   body, input, textarea, button {
