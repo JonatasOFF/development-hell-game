@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from 'react';
+import { ReactElement } from 'react';
 
 import { ContractsProvider } from './Contracts';
 import { EnterpriseProvider } from './Enterprise';
