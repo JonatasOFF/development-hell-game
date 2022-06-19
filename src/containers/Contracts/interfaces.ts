@@ -1,3 +1,3 @@
 export interface ContractsProps {
-  text: string;
+  text?: string;
 }

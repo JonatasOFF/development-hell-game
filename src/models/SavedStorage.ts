@@ -1,9 +1,12 @@
-import { ContractModel, ProgrammingModel, ProjectModel } from 'models';
+import { ProgrammingModel, ProjectModel } from 'models';
+
+import { ContractSavedStorage } from './Contracts';
 export interface SavedStorageModel {
   programmings: ProgrammingModel[];
-  contracts: ContractModel[];
+  contracts: ContractSavedStorage;
   projects: ProjectModel[];
-  upgrades: any;
-  money: any;
-  enterprise: any;
+  upgrades: unknown;
+  money: unknown;
+  time: number;
+  enterprise: unknown;
 }

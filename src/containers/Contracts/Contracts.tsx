@@ -1,12 +1,11 @@
-import { useState, useCallback } from 'react';
-import { ImArrowRight2, ImArrowLeft2 } from 'react-icons/im';
+import { useCallback, useState } from 'react';
+import { ImArrowLeft2, ImArrowRight2 } from 'react-icons/im';
 
 import { useContracts } from 'hooks';
 
-import { ContractsProps } from './interfaces';
 import * as S from './styles';
 
-export function Contracts({ text }: ContractsProps) {
+export function Contracts() {
   const { handleActiveContract, contractsFree } = useContracts();
   const [select, setSelect] = useState(0);
   const handleVerifySelect = useCallback(
@@ -14,7 +13,6 @@ export function Contracts({ text }: ContractsProps) {
       if (toBeSelect > contractsFree.length - 1) return setSelect(0);
 
       if (toBeSelect < 0) return setSelect(contractsFree.length - 1);
-      console.log(contractsFree.length - 1);
 
       setSelect(toBeSelect);
     },
@@ -33,10 +31,10 @@ export function Contracts({ text }: ContractsProps) {
       {contractsFree.length > 0 && (
         <div>
           <S.Header onClick={() => handleActiveContract(select)}>
-            {contractsFree[select].title}
+            {contractsFree.get(select).title}
           </S.Header>
           <S.Attributes>
-            {contractsFree[select].dependencies.map(dependency => (
+            {contractsFree.get(select).dependencies.map(dependency => (
               <S.Attribute key={dependency.type}>
                 <S.ProgrammingPointer />
                 <p>
@@ -46,7 +44,7 @@ export function Contracts({ text }: ContractsProps) {
             ))}
           </S.Attributes>
           <S.DescriptionContract>
-            {contractsFree[select].description}
+            {contractsFree.get(select).description}
           </S.DescriptionContract>
           {contractsFree.length !== 1 && (
             <div>

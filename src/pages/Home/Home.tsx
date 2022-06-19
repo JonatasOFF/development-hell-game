@@ -1,27 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
-import { Contracts, Projects } from 'containers';
-import { Programmings } from 'containers';
-import { useContracts } from 'hooks';
+import { clock } from 'common/utils/clock';
+import { Contracts, Programmings, Projects } from 'containers';
+import { useEnterprise, useStorage } from 'hooks';
 
 import * as S from './styles';
 
 export function Home() {
+  const storage = useStorage();
+  const { callbackfn, time, setCallbackfn } = useEnterprise();
+
+  const { second, minute, hour, day } = useMemo(() => clock(time), [time]);
+
   return (
     <S.Container>
       <S.LeftComponents>
-        <Programmings text="" />
+        <Programmings />
         <S.Upgrades>Lista de Upgrades</S.Upgrades>
       </S.LeftComponents>
       <S.CenterComponents>
         <S.Company>
-          <S.Time>999:99:99</S.Time>
-          company
+          <S.Time>
+            {hour}:{minute}:{second}
+          </S.Time>
+          Day: {day}
         </S.Company>
       </S.CenterComponents>
       <S.RightComponents>
-        <Contracts text="" />
-        <Projects text="" />
+        <Contracts />
+        <Projects />
       </S.RightComponents>
     </S.Container>
   );

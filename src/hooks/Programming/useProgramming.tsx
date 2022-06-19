@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
-import * as C from 'common/utils/constants/storage';
+import { FieldArray } from 'common/utils';
+import { useSavedStorage } from 'hooks';
 import { ProgrammingModel } from 'models';
 
 import { IProgrammingContext, IProgrammingProvider } from './interface';
@@ -10,18 +11,10 @@ const ProgrammingContext = createContext<IProgrammingContext>(
 );
 
 function ProgrammingProvider({ children }: IProgrammingProvider) {
-  const [programmings, setProgrammings] = useState([
-    {
-      name: 'Carlos',
-      age: 45,
-      production: 12,
-    },
-    {
-      name: 'Roberto',
-      age: 22,
-      production: 2,
-    },
-  ]);
+  const { savedStorage } = useSavedStorage();
+  const [programmings] = useState<FieldArray<ProgrammingModel>>(
+    savedStorage.programmingsStorage,
+  );
 
   return (
     <ProgrammingContext.Provider

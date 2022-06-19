@@ -8,7 +8,7 @@ export default {
   component: Contracts,
 } as Meta;
 
-export const Default: Story<ContractsProps> = args => <Contracts {...args} />;
+export const Default: Story<ContractsProps> = () => <Contracts />;
 
 Default.args = {
   text: 'Hello Storybook',

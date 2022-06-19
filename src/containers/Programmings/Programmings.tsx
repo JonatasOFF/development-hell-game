@@ -1,14 +1,9 @@
-import { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
-
-import { Dropdown, ItemProject, TextField } from 'components';
 import { useProgramming } from 'hooks';
 
 import { Programming } from './components';
-import { ProgrammingsProps } from './interfaces';
 import * as S from './styles';
 
-export function Programmings({ text }: ProgrammingsProps) {
+export function Programmings() {
   const { programmings } = useProgramming();
 
   return (
@@ -17,7 +12,7 @@ export function Programmings({ text }: ProgrammingsProps) {
       <S.Border />
       <S.List>
         {programmings &&
-          programmings.map(programming => (
+          programmings.list.map(programming => (
             <Programming {...programming} key={programming.name} />
           ))}
       </S.List>

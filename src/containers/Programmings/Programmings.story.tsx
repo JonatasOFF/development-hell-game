@@ -8,9 +8,7 @@ export default {
   component: Programmings,
 } as Meta;
 
-export const Default: Story<ProgrammingsProps> = args => (
-  <Programmings {...args} />
-);
+export const Default: Story<ProgrammingsProps> = () => <Programmings />;
 
 Default.args = {
   text: 'Hello Storybook',

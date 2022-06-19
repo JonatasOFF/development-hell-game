@@ -9,3 +9,8 @@ export interface ContractDepenncies {
   type: 'programming';
   value: number;
 }
+
+export interface ContractSavedStorage {
+  contractsActive: ContractModel[];
+  contractsFree: ContractModel[];
+}

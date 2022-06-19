@@ -1,12 +1,8 @@
 import { createContext, useContext, useState } from 'react';
 
 import { FieldArray } from 'common/utils';
-import {
-  ContractModel,
-  ProgrammingModel,
-  ProjectModel,
-  SavedStorageModel,
-} from 'models';
+import { ProgrammingModel, ProjectModel, SavedStorageModel } from 'models';
+import { ContractModel, ContractSavedStorage } from 'models/Contracts';
 
 import { ISavedStorageContext, ISavedStorageProvider } from './interfaces';
 
@@ -16,11 +12,12 @@ const SavedStorageContext = createContext<ISavedStorageContext>(
 
 class SavedStorage {
   readonly programmings: ProgrammingModel[];
-  readonly contracts: ContractModel[];
+  readonly contracts: ContractSavedStorage;
   readonly projects: ProjectModel[];
-  readonly upgrades: any;
-  readonly money: any;
-  readonly enterprise: any;
+  readonly time: number;
+  readonly upgrades: unknown;
+  readonly money: unknown;
+  readonly enterprise: unknown;
 
   constructor() {
     const developmentHellMock: SavedStorageModel = {
@@ -36,14 +33,25 @@ class SavedStorage {
           production: 2,
         },
       ],
-      contracts: [
-        {
-          title: 'OpaEae',
-          dependencies: [{ type: 'programming', value: 5 }],
-          description: 'Tudo bom e teste irmao !!',
-          reward: 1000,
-        },
-      ],
+      time: 0,
+      contracts: {
+        contractsActive: [
+          {
+            title: 'OpaEae',
+            dependencies: [{ type: 'programming', value: 5 }],
+            description: 'Tudo bom e teste irmao !!',
+            reward: 1000,
+          },
+        ],
+        contractsFree: [
+          {
+            title: 'FODASE',
+            dependencies: [{ type: 'programming', value: 5 }],
+            description: 'Tudo bom e teste irmao !!',
+            reward: 1000,
+          },
+        ],
+      },
       projects: [
         {
           name: '123 Teste SavedStorage',
@@ -78,14 +86,30 @@ class SavedStorage {
     this.contracts = data.contracts;
     this.projects = data.projects;
     this.upgrades = data.upgrades;
+    this.time = data.time;
     this.money = data.money;
     this.enterprise = data.enterprise;
-
-    if (!load) this.save();
+    if (!load) this.save(data);
   }
 
-  save(): string {
-    const saved = JSON.stringify(this);
+  get contractsFree(): FieldArray<ContractModel> {
+    return new FieldArray<ContractModel>([...this.contracts.contractsFree]);
+  }
+
+  get contractsActive(): FieldArray<ContractModel> {
+    return new FieldArray<ContractModel>([...this.contracts.contractsActive]);
+  }
+
+  get programmingsStorage(): FieldArray<ProgrammingModel> {
+    return new FieldArray<ProgrammingModel>([...this.programmings]);
+  }
+
+  get projectsStorage(): FieldArray<ProjectModel> {
+    return new FieldArray<ProjectModel>([...this.projects]);
+  }
+
+  save(data: SavedStorageModel): string {
+    const saved = JSON.stringify(data);
     localStorage.setItem('@development-hell:storage', saved);
     return saved;
   }
@@ -97,24 +121,15 @@ class SavedStorage {
 
     return data;
   }
-
-  get arrayOfProgrammings(): FieldArray<ProgrammingModel> {
-    const programmings = new FieldArray<ProgrammingModel>([
-      ...this.programmings,
-    ]);
-    return programmings;
-  }
 }
 
 function SavedStorageProvider({ children }: ISavedStorageProvider) {
-  const [text, setText] = useState<string>('');
-  const savedStorage = new SavedStorage();
-  console.log(savedStorage.arrayOfProgrammings);
+  const [savedStorage] = useState<SavedStorage>(new SavedStorage());
 
   return (
     <SavedStorageContext.Provider
       value={{
-        text,
+        savedStorage,
       }}
     >
       {children}
@@ -128,4 +143,4 @@ function useSavedStorage(): ISavedStorageContext {
   return context;
 }
 
-export { SavedStorageProvider, useSavedStorage };
+export { SavedStorageProvider, useSavedStorage, SavedStorage };

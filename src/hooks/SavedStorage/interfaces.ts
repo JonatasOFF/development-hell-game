@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
 
+import { SavedStorage } from './SavedStorage';
+
 export interface ISavedStorageContext {
-  text?: string;
+  savedStorage: SavedStorage;
 }
 
 export interface ISavedStorageProvider {

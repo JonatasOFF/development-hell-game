@@ -5,3 +5,5 @@ export { useProgramming } from './Programming';
 export { AppProvider } from './AppProvider';
 
 export { useSavedStorage } from './SavedStorage';
+
+export { useStorage } from './Storage';

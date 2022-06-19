@@ -3,23 +3,31 @@ import { ProjectModel } from 'models/Projects';
 export const timeConclusion = (ProjectUse: ProjectModel) => {
   const { bScore, wScore } = ProjectUse;
   const scoreNeed = bScore - wScore;
+
   const time = (scoreNeed * 3600) / ProjectUse.programmings[0].production;
   return Math.floor(time);
 };
 
 export class ProjectManager {
-  readonly ProjectUse: ProjectModel;
+  ProjectUse: ProjectModel;
 
-  constructor(ProjectUse: ProjectModel) {
-    const validatorProject = ProjectUse;
-    const pontuation = ProjectUse.contracts[0].dependencies.reduce(
+  constructor(ProjectUse?: ProjectModel) {
+    if (ProjectUse) {
+      this.ProjectUse = this.validatorProject(ProjectUse);
+      return;
+    }
+    this.ProjectUse = {} as ProjectModel;
+  }
+
+  private validatorProject(project: ProjectModel): ProjectModel {
+    const validatorProject = project;
+    const pontuation = project.contracts[0].dependencies.reduce(
       (previous, current) => previous + current.value,
       0,
     );
     validatorProject.bScore = pontuation;
-    validatorProject.payload = ProjectUse.contracts[0].reward;
-
-    this.ProjectUse = validatorProject;
+    validatorProject.payload = project.contracts[0].reward;
+    return validatorProject;
   }
 
   get project(): ProjectModel {
@@ -35,11 +43,14 @@ export class ProjectManager {
     return timeConclusion(this.ProjectUse);
   }
 
+  set setProject(project: ProjectModel) {
+    this.ProjectUse = project;
+  }
+
   tick() {
-    console.log(this.production);
     const productionBySecond = this.production / 3600;
+
     this.ProjectUse.wScore += productionBySecond;
-    // console.log(this.ProjectUse);
     return this.ProjectUse;
   }
 }

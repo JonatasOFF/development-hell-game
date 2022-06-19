@@ -1,17 +1,35 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-import * as C from 'common/utils/constants/storage';
+import { FieldArray } from 'common/utils';
+import { useSavedStorage } from 'hooks/SavedStorage';
 
-import { IEnterpriseContext, IEnterpriseProvider } from './interface';
+import {
+  Callbackfn,
+  IEnterpriseContext,
+  IEnterpriseProvider,
+} from './interface';
 
 const EnterpriseContext = createContext<IEnterpriseContext>(
   {} as IEnterpriseContext,
 );
 
 function EnterpriseProvider({ children }: IEnterpriseProvider) {
-  const text = '123';
+  const { savedStorage } = useSavedStorage();
+  const [callbackfn, setCallbackfn] = useState<FieldArray<Callbackfn>>(
+    new FieldArray<Callbackfn>([]),
+  );
+  const [time, setTime] = useState(savedStorage.time);
+
+  useEffect(() => {
+    const tick = setInterval(() => {
+      callbackfn.list.forEach(fun => fun());
+      setTime(time + 1);
+    }, 1000);
+
+    return () => clearInterval(tick);
+  }, [callbackfn, time]);
   return (
-    <EnterpriseContext.Provider value={{ text }}>
+    <EnterpriseContext.Provider value={{ callbackfn, time, setCallbackfn }}>
       {children}
     </EnterpriseContext.Provider>
   );

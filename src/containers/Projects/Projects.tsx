@@ -1,14 +1,14 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useMemo } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import { Dropdown, ItemProject, TextField } from 'components';
 import { useContracts, useProgramming, useProjects } from 'hooks';
-import { ProjectModel } from 'models';
+import { ProgrammingModel, ProjectModel } from 'models';
 
-import { ProjectsProps } from './interfaces';
 import * as S from './styles';
 
-export function Projects({ text }: ProjectsProps) {
+export function Projects() {
   const [createNewProject, setCreateNewProject] = useState(false);
   const [nameProject, setNameProject] = useState('');
   const [programming, setProgramming] = useState('');
@@ -17,18 +17,21 @@ export function Projects({ text }: ProjectsProps) {
   const { contractsActive } = useContracts();
   const { projects, handleCreateProject } = useProjects();
 
+  const listProjects = useMemo(() => projects.list, [projects]);
+
   const handleCreateNewProject = useCallback(() => {
-    const contractUse = contractsActive.find(
+    const contractUse = contractsActive.list.find(
       contractActive => contractActive.title === contract,
     );
-    console.log(projects);
     if (contractUse) {
-      const programmingUse = programmings.find(p => p.name === programming);
+      const programmingUse = programmings.list.find(
+        p => p.name === programming,
+      );
       const newProject: ProjectModel = {
         name: nameProject,
         description: '',
         contracts: [contractUse],
-        programmings: [programmingUse || ({} as any)],
+        programmings: [programmingUse || ({} as ProgrammingModel)],
         payload: 5,
         bScore: 0,
         wScore: 0,
@@ -57,14 +60,15 @@ export function Projects({ text }: ProjectsProps) {
           placeholder="Nome do Programador"
           label="Programador que vai atuar"
           onChange={change => setProgramming(change)}
-          list={programmings.map(programming => programming.name)}
+          list={programmings.list.map(programming => programming.name)}
           value={programming}
         />
+
         <Dropdown
           placeholder="Contrato"
           label="Contrato que o programador vai atuar"
           onChange={change => setContract(change)}
-          list={contractsActive.map(contract => contract.title)}
+          list={contractsActive.list.map(contract => contract.title)}
           value={contract}
         />
         <S.InformationProject>
@@ -80,7 +84,7 @@ export function Projects({ text }: ProjectsProps) {
       </S.FormCreateProject>
       <S.BorderBrightness />
       <S.List>
-        {projects.map((project: ProjectModel) => (
+        {listProjects.map((project: ProjectModel) => (
           <ItemProject key={project.name} {...project} />
         ))}
       </S.List>

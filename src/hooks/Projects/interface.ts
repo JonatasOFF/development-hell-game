@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
 
+import { FieldArray } from 'common/utils';
 import { ProjectModel } from 'models/Projects';
 
 export interface IProjectsContext {
-  projects: ProjectModel[];
+  projects: FieldArray<ProjectModel>;
   handleCreateProject: (project: ProjectModel) => void;
 }
 

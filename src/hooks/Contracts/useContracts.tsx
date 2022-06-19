@@ -7,8 +7,7 @@ import {
 } from 'react';
 
 import { FieldArray } from 'common/utils';
-import * as C from 'common/utils/constants/storage';
-import { useEnterprise } from 'hooks';
+import { useSavedStorage } from 'hooks';
 import { ContractModel } from 'models';
 
 import { IContractsContext, IContractsProvider } from './interface';
@@ -18,15 +17,20 @@ const ContractsContext = createContext<IContractsContext>(
 );
 
 function ContractsProvider({ children }: IContractsProvider) {
-  const [contractsActive, setContractsActive] = useState<ContractModel[]>([]);
-  const [contractsFree, setContractsFree] = useState<ContractModel[]>([]);
+  const { savedStorage } = useSavedStorage();
+  const [att, setAtt] = useState(0);
+  const [contractsActive, setContractsActive] = useState<
+    FieldArray<ContractModel>
+  >(savedStorage.contractsActive);
+  const [contractsFree, setContractsFree] = useState<FieldArray<ContractModel>>(
+    savedStorage.contractsFree,
+  );
 
   useEffect(() => {
     const generatorContracts = setInterval(() => {
-      if (2 > contractsFree.length) {
-        const field = new FieldArray<ContractModel>([...contractsFree]);
+      if (1 > contractsFree.length) {
         const newContractsFree: ContractModel = {
-          title: 'OpaEae',
+          title: 'FODASE 2',
           dependencies: [
             { type: 'programming', value: Math.floor(Math.random() * 10) },
           ],
@@ -34,22 +38,22 @@ function ContractsProvider({ children }: IContractsProvider) {
           reward: 1000,
         };
 
-        setContractsFree(field.append(newContractsFree));
+        setContractsFree(contractsFree.append(newContractsFree));
       }
-    }, 1000);
+      setAtt(att + 1);
+    }, 5200);
     return () => clearInterval(generatorContracts);
-  }, [contractsFree]);
+  }, [att]);
 
   const handleActiveContract = useCallback(
     (index: number) => {
-      if (2 > contractsActive.length) {
-        const field = new FieldArray<ContractModel>([...contractsFree]);
-
-        setContractsActive([...contractsActive, field.get(index)]);
-        setContractsFree(field.remove(index));
+      if (3 > contractsActive.length) {
+        setContractsActive(contractsActive.append(contractsFree.get(index)));
+        setContractsFree(contractsFree.remove(index));
+        setAtt(att + 1);
       }
     },
-    [2, contractsActive, contractsFree],
+    [att],
   );
 
   return (
