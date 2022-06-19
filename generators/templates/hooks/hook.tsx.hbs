@@ -1,21 +1,19 @@
 import {createContext, useContext, useState} from 'react';
-import { {{pascalCase name}}Model } from 'models';
-
 import { I{{pascalCase name}}Context, I{{pascalCase name}}Provider } from './interfaces';
 
 const {{pascalCase name}}Context = createContext<I{{pascalCase name}}Context>({} as I{{pascalCase name}}Context)
 
-function {{pascalCase name}}Provider({children}: I{{pascalCase name}}Context) {
+function {{pascalCase name}}Provider({children}: I{{pascalCase name}}Provider) {
   const [text, setText] = useState<string>('');
 
-  return (
-    <IgnoreContext.Provider
+   return(
+    <{{pascalCase name}}Context.Provider
       value=\{{
         text,
       }}
     >
       {children}
-    </IgnoreContext.Provider>
+    </{{pascalCase name}}Context.Provider>
   );
 }
 
