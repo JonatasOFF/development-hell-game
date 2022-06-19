@@ -4,6 +4,7 @@ import { ContractsProvider } from './Contracts';
 import { EnterpriseProvider } from './Enterprise';
 import { ProgrammingProvider } from './Programming';
 import { ProjectsProvider } from './Projects';
+import { SavedStorageProvider } from './SavedStorage';
 
 interface AppProviderProps {
   children: ReactElement;
@@ -11,12 +12,14 @@ interface AppProviderProps {
 
 export function AppProvider({ children }: AppProviderProps) {
   return (
-    <EnterpriseProvider>
-      <ProgrammingProvider>
-        <ProjectsProvider>
-          <ContractsProvider>{children}</ContractsProvider>
-        </ProjectsProvider>
-      </ProgrammingProvider>
-    </EnterpriseProvider>
+    <SavedStorageProvider>
+      <EnterpriseProvider>
+        <ProgrammingProvider>
+          <ProjectsProvider>
+            <ContractsProvider>{children}</ContractsProvider>
+          </ProjectsProvider>
+        </ProgrammingProvider>
+      </EnterpriseProvider>
+    </SavedStorageProvider>
   );
 }

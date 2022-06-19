@@ -9,20 +9,9 @@ const EnterpriseContext = createContext<IEnterpriseContext>(
 );
 
 function EnterpriseProvider({ children }: IEnterpriseProvider) {
-  const [contractsLimit, setContractsLimit] = useState<number>(99);
-  const [contractsLimitActive, setContractsLimitActive] = useState<number>(99);
-  const [projectsLimit, setProjectsLimit] = useState<number>(99);
-  const [programmersLimit, setProgrammersLimit] = useState(99);
-
+  const text = '123';
   return (
-    <EnterpriseContext.Provider
-      value={{
-        contractsLimitActive,
-        contractsLimit,
-        projectsLimit,
-        programmersLimit,
-      }}
-    >
+    <EnterpriseContext.Provider value={{ text }}>
       {children}
     </EnterpriseContext.Provider>
   );

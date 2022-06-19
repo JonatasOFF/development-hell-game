@@ -10,7 +10,6 @@ import * as S from './styles';
 
 export function Programmings({ text }: ProgrammingsProps) {
   const { programmings } = useProgramming();
-  console.log(programmings);
 
   return (
     <S.Container>

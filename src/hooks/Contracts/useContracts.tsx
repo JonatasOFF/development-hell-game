@@ -18,14 +18,12 @@ const ContractsContext = createContext<IContractsContext>(
 );
 
 function ContractsProvider({ children }: IContractsProvider) {
-  const { contractsLimit, contractsLimitActive } = useEnterprise();
-
   const [contractsActive, setContractsActive] = useState<ContractModel[]>([]);
   const [contractsFree, setContractsFree] = useState<ContractModel[]>([]);
 
   useEffect(() => {
     const generatorContracts = setInterval(() => {
-      if (contractsLimit > contractsFree.length) {
+      if (2 > contractsFree.length) {
         const field = new FieldArray<ContractModel>([...contractsFree]);
         const newContractsFree: ContractModel = {
           title: 'OpaEae',
@@ -44,14 +42,14 @@ function ContractsProvider({ children }: IContractsProvider) {
 
   const handleActiveContract = useCallback(
     (index: number) => {
-      if (contractsLimitActive > contractsActive.length) {
+      if (2 > contractsActive.length) {
         const field = new FieldArray<ContractModel>([...contractsFree]);
 
         setContractsActive([...contractsActive, field.get(index)]);
         setContractsFree(field.remove(index));
       }
     },
-    [contractsLimitActive, contractsActive, contractsFree],
+    [2, contractsActive, contractsFree],
   );
 
   return (
