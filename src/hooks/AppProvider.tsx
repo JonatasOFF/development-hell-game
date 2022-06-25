@@ -18,9 +18,7 @@ export function AppProvider({ children }: AppProviderProps) {
         <ProgrammingProvider>
           <ProjectsProvider>
             <ContractsProvider>
-              <div>
-                <StorageProvider>{children}</StorageProvider>
-              </div>
+              <StorageProvider>{children}</StorageProvider>
             </ContractsProvider>
           </ProjectsProvider>
         </ProgrammingProvider>

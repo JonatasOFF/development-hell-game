@@ -22,7 +22,7 @@ function EnterpriseProvider({ children }: IEnterpriseProvider) {
 
   useEffect(() => {
     const tick = setInterval(() => {
-      callbackfn.list.forEach(fun => fun());
+      callbackfn.list.forEach(fun => fun(time));
       setTime(time + 1);
     }, 1000);
 

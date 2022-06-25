@@ -8,7 +8,7 @@ export interface IEnterpriseContext {
   setCallbackfn: Dispatch<SetStateAction<FieldArray<Callbackfn>>>;
 }
 
-export type Callbackfn = () => void;
+export type Callbackfn = (time: number) => void;
 export interface IEnterpriseProvider {
   children: ReactElement;
 }

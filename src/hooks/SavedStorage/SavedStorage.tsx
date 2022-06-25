@@ -35,22 +35,8 @@ class SavedStorage {
       ],
       time: 0,
       contracts: {
-        contractsActive: [
-          {
-            title: 'OpaEae',
-            dependencies: [{ type: 'programming', value: 5 }],
-            description: 'Tudo bom e teste irmao !!',
-            reward: 1000,
-          },
-        ],
-        contractsFree: [
-          {
-            title: 'FODASE',
-            dependencies: [{ type: 'programming', value: 5 }],
-            description: 'Tudo bom e teste irmao !!',
-            reward: 1000,
-          },
-        ],
+        contractsActive: [],
+        contractsFree: [],
       },
       projects: [
         {

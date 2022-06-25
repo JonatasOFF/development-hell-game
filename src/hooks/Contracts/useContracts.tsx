@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import { FieldArray } from 'common/utils';
-import { useSavedStorage } from 'hooks';
+import { useSavedStorage, useEnterprise } from 'hooks';
 import { ContractModel } from 'models';
 
 import { IContractsContext, IContractsProvider } from './interface';
@@ -18,7 +18,8 @@ const ContractsContext = createContext<IContractsContext>(
 
 function ContractsProvider({ children }: IContractsProvider) {
   const { savedStorage } = useSavedStorage();
-  const [att, setAtt] = useState(0);
+  const { callbackfn, setCallbackfn } = useEnterprise();
+
   const [contractsActive, setContractsActive] = useState<
     FieldArray<ContractModel>
   >(savedStorage.contractsActive);
@@ -26,11 +27,11 @@ function ContractsProvider({ children }: IContractsProvider) {
     savedStorage.contractsFree,
   );
 
-  useEffect(() => {
-    const generatorContracts = setInterval(() => {
-      if (1 > contractsFree.length) {
+  const generatorContractsFn = useCallback(
+    (time: number) => {
+      if (6 > contractsFree.length && time % 100 === 0) {
         const newContractsFree: ContractModel = {
-          title: 'FODASE 2',
+          title: Math.floor(Math.random() * 100) + '',
           dependencies: [
             { type: 'programming', value: Math.floor(Math.random() * 10) },
           ],
@@ -40,21 +41,24 @@ function ContractsProvider({ children }: IContractsProvider) {
 
         setContractsFree(contractsFree.append(newContractsFree));
       }
-      setAtt(att + 1);
-    }, 5200);
-    return () => clearInterval(generatorContracts);
-  }, [att]);
-
-  const handleActiveContract = useCallback(
-    (index: number) => {
-      if (3 > contractsActive.length) {
-        setContractsActive(contractsActive.append(contractsFree.get(index)));
-        setContractsFree(contractsFree.remove(index));
-        setAtt(att + 1);
-      }
     },
-    [att],
+    [contractsFree, contractsActive],
   );
+
+  useEffect(() => {
+    setCallbackfn(callbackfn.append(generatorContractsFn));
+  }, []);
+
+  console.log(contractsFree);
+
+  const handleActiveContract = (index: number) => {
+    console.log(contractsActive.length);
+    if (999 > contractsActive.length) {
+      console.log(contractsFree);
+      setContractsActive(contractsActive.append(contractsFree.get(index)));
+      setContractsFree(contractsFree.remove(index));
+    }
+  };
 
   return (
     <ContractsContext.Provider

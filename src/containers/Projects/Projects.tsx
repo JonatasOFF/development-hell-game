@@ -68,7 +68,7 @@ export function Projects() {
           placeholder="Contrato"
           label="Contrato que o programador vai atuar"
           onChange={change => setContract(change)}
-          list={contractsActive.list.map(contract => contract.title)}
+          list={contractsActive.list.map(contract => contract?.title)}
           value={contract}
         />
         <S.InformationProject>

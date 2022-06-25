@@ -30,7 +30,12 @@ export function Contracts() {
     <S.Container>
       {contractsFree.length > 0 && (
         <div>
-          <S.Header onClick={() => handleActiveContract(select)}>
+          <S.Header
+            onClick={event => {
+              if (!event.detail || event.detail === 1)
+                handleActiveContract(select);
+            }}
+          >
             {contractsFree.get(select).title}
           </S.Header>
           <S.Attributes>
