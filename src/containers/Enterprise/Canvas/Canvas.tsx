@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export const Canvas = (props: any) => {
-  const canvasRef = useRef(null);
-  const [c, setCanvas] = useState<any>();
+import { CanvasProps } from './interfaces';
+
+export const Canvas = ({ containerRef }: CanvasProps) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [c, setCanvas] = useState<CanvasRenderingContext2D>(
+    {} as CanvasRenderingContext2D,
+  );
 
   const background = () => {
-    const canvas = canvasRef.current as any;
+    const canvas = canvasRef.current as HTMLCanvasElement;
     c.fillStyle = 'rgba(0,0,0,0.5)';
     c.fillRect(0, 0, canvas.width, canvas.height);
   };
@@ -81,9 +85,9 @@ export const Canvas = (props: any) => {
   };
 
   function drawStuff() {
-    const heightBuilding = 780;
+    // const heightBuilding = 780;
     const widthBuilding = 250;
-    const canvas = canvasRef.current as any;
+    const canvas = canvasRef.current as HTMLCanvasElement;
     background();
     bodyBuilding(
       canvas.width / 2 - widthBuilding,
@@ -96,29 +100,28 @@ export const Canvas = (props: any) => {
   }
 
   function resizeCanvas() {
-    if (canvasRef) {
-      const canvas = canvasRef.current as any;
-      canvas.width = window.innerWidth - 700;
-      canvas.height = window.innerHeight - 34;
-
+    if (containerRef.current) {
+      const canvas = canvasRef.current as HTMLCanvasElement;
+      canvas.width = containerRef.current.clientWidth;
+      canvas.height = containerRef.current.clientHeight;
       drawStuff();
     }
   }
 
   useEffect(() => {
-    if (canvasRef) {
-      const canvas = canvasRef.current as any;
-      setCanvas(canvas.getContext('2d'));
+    if (canvasRef.current) {
+      const canvas = canvasRef.current;
+
+      setCanvas(canvas.getContext('2d') as CanvasRenderingContext2D);
     }
   }, [canvasRef]);
 
   useEffect(() => {
-    if (c) {
+    if (c.canvas) {
       resizeCanvas();
-      console.log('qa');
       window.addEventListener('resize', resizeCanvas);
     }
   }, [c]);
 
-  return <canvas ref={canvasRef} {...props} />;
+  return <canvas ref={canvasRef} />;
 };

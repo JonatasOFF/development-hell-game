@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: red;
+  width: calc(100vw - 70rem);
+  height: 100vh;
 `;

@@ -1,8 +1,13 @@
-import { useCallback, useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { Canvas } from './Canvas/Canvas';
 import * as S from './styles';
 
 export function Enterprise() {
-  return <Canvas styles={{ backgroundColor: 'red' }} id="canvas" />;
+  const containerRef = useRef<HTMLDivElement>(null);
+  return (
+    <S.Container ref={containerRef}>
+      <Canvas containerRef={containerRef} />
+    </S.Container>
+  );
 }
