@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 
 import { clock } from 'common/utils/clock';
 import { Contracts, Programmings, Projects } from 'containers';
+import { Enterprise } from 'containers/Enterprise';
 import { useEnterprise, useStorage } from 'hooks';
 
 import * as S from './styles';
@@ -24,6 +25,7 @@ export function Home() {
             {hour}:{minute}:{second}
           </S.Time>
           Day: {day}
+          <Enterprise />
         </S.Company>
       </S.CenterComponents>
       <S.RightComponents>

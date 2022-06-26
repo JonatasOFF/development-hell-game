@@ -49,12 +49,8 @@ function ContractsProvider({ children }: IContractsProvider) {
     setCallbackfn(callbackfn.append(generatorContractsFn));
   }, []);
 
-  console.log(contractsFree);
-
   const handleActiveContract = (index: number) => {
-    console.log(contractsActive.length);
     if (999 > contractsActive.length) {
-      console.log(contractsFree);
       setContractsActive(contractsActive.append(contractsFree.get(index)));
       setContractsFree(contractsFree.remove(index));
     }
