@@ -83,6 +83,7 @@ export const Canvas = (props: any) => {
   function drawStuff() {
     const heightBuilding = 780;
     const widthBuilding = 250;
+    const canvas = canvasRef.current as any;
     background();
     bodyBuilding(
       canvas.width / 2 - widthBuilding,
