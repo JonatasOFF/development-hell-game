@@ -31,11 +31,14 @@ function ContractsProvider({ children }: IContractsProvider) {
     (time: number) => {
       if (6 > contractsFree.length && time % 100 === 0) {
         const newContractsFree: ContractModel = {
-          title: Math.floor(Math.random() * 100) + '',
+          title: Math.floor(Math.random() * 100) + '123',
           dependencies: [
             { type: 'programming', value: Math.floor(Math.random() * 10) },
+            { type: 'frontend', value: Math.floor(Math.random() * 10) },
+            { type: 'backend', value: Math.floor(Math.random() * 10) },
           ],
           description: 'Tudo bom e teste irmao !!',
+          descriptionAbout: 'é um contrato bom confia',
           reward: 1000,
         };
 

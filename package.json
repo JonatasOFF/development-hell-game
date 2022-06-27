@@ -24,6 +24,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-modal": "^3.15.1",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
@@ -110,9 +111,8 @@
     ]
   },
   "optionalDependencies": {
-  "babel-loader": "8.1.0"
-},
-
+    "babel-loader": "8.1.0"
+  },
   "jest": {
     "coverageReporters": [
       "json",

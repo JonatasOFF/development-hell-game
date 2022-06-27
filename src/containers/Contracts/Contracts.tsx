@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react';
 import { ImArrowLeft2, ImArrowRight2 } from 'react-icons/im';
+import Modal from 'react-modal';
 
+import { uniqByKeepLast } from 'common/utils/uniqByKeepLast';
 import { useContracts } from 'hooks';
 
 import * as S from './styles';
@@ -26,44 +28,47 @@ export function Contracts() {
   const handlePrevious = useCallback(() => {
     handleVerifySelect(select - 1);
   }, [select, contractsFree]);
+
   return (
     <S.Container>
-      {contractsFree.length > 0 && (
-        <div>
-          <S.Header
-            onClick={event => {
-              if (!event.detail || event.detail === 1)
-                handleActiveContract(select);
-            }}
-          >
-            {contractsFree.get(select).title}
-          </S.Header>
-          <S.Attributes>
-            {contractsFree.get(select).dependencies.map(dependency => (
-              <S.Attribute key={dependency.type}>
-                <S.ProgrammingPointer />
-                <p>
-                  {dependency.value} {dependency.type}
-                </p>
-              </S.Attribute>
-            ))}
-          </S.Attributes>
-          <S.DescriptionContract>
-            {contractsFree.get(select).description}
-          </S.DescriptionContract>
-          {contractsFree.length !== 1 && (
-            <div>
-              <S.ArrowNextContract onClick={() => handleNext()}>
-                <ImArrowRight2 />
-              </S.ArrowNextContract>
-              <S.ArrowPreviousContract onClick={() => handlePrevious()}>
-                <ImArrowLeft2 />
-              </S.ArrowPreviousContract>
-            </div>
-          )}
-        </div>
+      {contractsFree.length > 1 && (
+        <S.ArrowButton onClick={handlePrevious}>
+          <ImArrowLeft2 />
+        </S.ArrowButton>
       )}
-      {contractsFree.length === 0 && 'Foi mal ai vei'}
+
+      <S.ContainerContracts>
+        {contractsFree.length > 0 && (
+          <div>
+            <S.Header>{contractsFree.get(select).title}</S.Header>
+            <S.DescriptionContract>
+              {contractsFree.get(select).descriptionAbout}
+            </S.DescriptionContract>
+            <S.Attributes>
+              {contractsFree
+                .get(select)
+                .dependencies.map((dependecie, index) => (
+                  <S.Attribute
+                    type={dependecie.type}
+                    key={dependecie.type + index + 9999}
+                  >
+                    <S.Pointer />
+                    <p>{dependecie.type}</p>
+                  </S.Attribute>
+                ))}
+            </S.Attributes>
+            <S.About>Visualizar </S.About>
+          </div>
+        )}
+        {contractsFree.length === 0 && 'sem contratos'}
+      </S.ContainerContracts>
+      {contractsFree.length > 1 && (
+        <S.ArrowButton onClick={handleNext}>
+          <ImArrowRight2 />
+        </S.ArrowButton>
+      )}
+
+      <Modal isOpen={false}>Abre a rola</Modal>
     </S.Container>
   );
 }
