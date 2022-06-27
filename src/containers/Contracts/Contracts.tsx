@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { ImArrowLeft2, ImArrowRight2 } from 'react-icons/im';
 import Modal from 'react-modal';
 
-import { uniqByKeepLast } from 'common/utils/uniqByKeepLast';
 import { useContracts } from 'hooks';
 
 import * as S from './styles';
