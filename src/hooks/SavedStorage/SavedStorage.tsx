@@ -47,6 +47,7 @@ class SavedStorage {
               title: 'FODASE',
               dependencies: [{ type: 'programming', value: 5 }],
               description: 'Tudo bom e teste irmao !!',
+              descriptionAbout: 'Essa e uma descriçao about',
               reward: 1000,
             },
           ],

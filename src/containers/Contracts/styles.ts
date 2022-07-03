@@ -36,6 +36,37 @@ const modifier = {
   },
 };
 
+export const ModalStyles = {
+  content: {
+    background: '#32302c',
+    width: '55rem',
+    height: 'fit-content',
+    margin: 'auto auto',
+    border: 0,
+    padding: '0rem',
+    borderRadius: '2rem',
+    boxShadow: '0rem 0.3rem 1.2rem #00000029',
+  },
+  overlay: {
+    background: '#70707033',
+
+    backdropFilter: 'blur(0.3rem)',
+    zIndex: 15,
+  },
+};
+
+export const ContainerModal = styled.div`
+  padding: 1.6rem;
+`;
+
+export const ContainerModalAtribbutes = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5rem;
+  margin-bottom: 4rem;
+  margin-top: 3rem;
+`;
+
 export const Container = styled.div`
   max-height: 20rem;
   min-height: 20rem;
@@ -128,5 +159,14 @@ export const About = styled.div`
   :hover {
     background-color: #c6c2a7;
     color: black;
+  }
+`;
+
+export const CloseModal = styled.span`
+  position: absolute;
+  right: 1.5rem;
+  cursor: pointer;
+  > svg {
+    fill: white;
   }
 `;
